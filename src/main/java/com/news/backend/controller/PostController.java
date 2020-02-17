@@ -6,6 +6,7 @@ import com.news.backend.dao.repository.CommentThreadRepository;
 import com.news.backend.dao.repository.PostRepository;
 import com.news.backend.exception.PostCreationFailedException;
 import com.news.backend.exception.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,13 +17,11 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 public class PostController {
 
-    @Autowired
-    private PostRepository postRepository;
-
-    @Autowired
-    private CommentThreadRepository commentThreadRepository;
+    private final PostRepository postRepository;
+    private final CommentThreadRepository commentThreadRepository;
 
     @GetMapping("/posts")
     public Page<Post> getAllPosts(Pageable pageable) {

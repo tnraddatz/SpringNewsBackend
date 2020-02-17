@@ -4,6 +4,7 @@ import com.news.backend.dao.model.Comment;
 import com.news.backend.dao.repository.CommentRepository;
 import com.news.backend.dao.repository.CommentThreadRepository;
 import com.news.backend.exception.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 public class CommentController {
 
-    @Autowired
-    private CommentRepository commentRepository;
-
-    @Autowired
-    private CommentThreadRepository commentThreadRepository;
+    private final CommentRepository commentRepository;
+    private final CommentThreadRepository commentThreadRepository;
 
     @GetMapping("/posts/thread/{commentThreadId}/comments")
     public Page<Comment> getAllCommentsByCommendThreadId(@PathVariable (value = "commentThreadId") Long commentThreadId,
