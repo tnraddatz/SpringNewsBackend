@@ -5,7 +5,6 @@ import com.news.backend.dao.repository.CommentRepository;
 import com.news.backend.dao.repository.CommentThreadRepository;
 import com.news.backend.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class CommentController {
 
+    //Parameters to CommentController
     private final CommentRepository commentRepository;
     private final CommentThreadRepository commentThreadRepository;
 
@@ -47,6 +47,13 @@ public class CommentController {
             comment.setCommentText(commentRequest.getCommentText());
             return commentRepository.save(comment);
         }).orElseThrow(() -> new ResourceNotFoundException("CommentId " + commentId + "not found"));
+    }
+
+    @GetMapping("/posts/thread/{commentThreadId}/comments/{commentId}")
+    public Comment getComment(@PathVariable (value = "commentThreadId") Long commentThreadId,
+                                           @PathVariable (value = "commentId") Long commentId) {
+        return commentRepository.findByIdAndCommentThreadId(commentId, commentThreadId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found with id " + commentId + " and Comment Thread Id " + commentThreadId));
     }
 
     @DeleteMapping("/posts/thread/{commentThreadId}/comments/{commentId}")

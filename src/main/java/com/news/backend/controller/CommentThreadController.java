@@ -4,7 +4,6 @@ import com.news.backend.dao.model.CommentThread;
 import com.news.backend.dao.repository.CommentRepository;
 import com.news.backend.dao.repository.CommentThreadRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentThreadController {
 
+    //Parameters to CommentThreadController
     private final CommentRepository commentRepository;
     private final CommentThreadRepository commentThreadRepository;
 

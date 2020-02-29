@@ -35,4 +35,13 @@ public class Comment {
 //    @JsonIgnore
 //    private Comment parent_comment;
 
+    public Comment(){
+        this.votes = 0;
+    }
+
+    public Comment(String commentText){
+        this.commentText = commentText;
+        this.votes = 0;
+    }
+
 }
