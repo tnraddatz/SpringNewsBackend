@@ -3,6 +3,6 @@
 .classpath
 target
 .settings
-.iml
+*.iml
 HELP.md
 .idea
